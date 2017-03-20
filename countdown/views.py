@@ -39,7 +39,7 @@ class PassThroughView(View):
 class CountdownCreateView(CreateView):
     model = Countdown
     success_url = "/"
-    fields = []
+    fields = ('end_time',)
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.base_slug = uuid.uuid4()
