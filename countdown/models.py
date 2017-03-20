@@ -1,9 +1,12 @@
 from django.db import models
+import random, string
 
-
+class Countdown(models.Model):
+    base_slug = models.CharField(max_length=50)
+    management_slug = models.CharField(max_length=50)
 
 class Image(models.Model):
-    user = models.ForeignKey('auth.User')
+    countdown = models.ForeignKey(Countdown)
     picture = models.FileField()
 
     @property

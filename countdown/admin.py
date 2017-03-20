@@ -1,3 +1,2 @@
 from django.contrib import admin
-
-# Register your models here.
+from countdown.models import Countdown, Image

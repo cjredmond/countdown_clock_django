@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'countdown',
-    'user_auth',
 ]
 
 MIDDLEWARE = [
