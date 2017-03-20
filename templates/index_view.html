@@ -18,5 +18,10 @@
 
 {% block content %}
  {{ num }}
- 
+ <form class="" action="/pass/" method="post">
+   {% csrf_token %}
+   <input type="text" name="code" value="">
+   <input type="submit" name="" value="submit">
+ </form>
+
 {% endblock %}

@@ -1,5 +1,4 @@
 from django.db import models
-import random, string
 
 class Countdown(models.Model):
     base_slug = models.CharField(max_length=50)
