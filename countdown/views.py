@@ -19,9 +19,9 @@ class ImageCreateView(CreateView):
     model = Image
     success_url = "/"
     fields = ('picture',)
-
     def form_valid(self, form):
-        subject = countdown.objects.get(management_slug=self.request['pk'])
+        print(self.kwargs['pk'])
+        subject = Countdown.objects.get(management_slug=str(self.kwargs['pk']))
         instance = form.save(commit=False)
         instance.countdown = subject
         return super().form_valid(form)
@@ -35,11 +35,11 @@ class PassThroughView(View):
             return HttpResponseRedirect(reverse('index_view'))
         # return HttpResponseRedirect(reverse('image_create_view', args=target.management_slug))
         return HttpResponseRedirect('http://localhost:8000/add_image/{}/'.format(code))
+
 class CountdownCreateView(CreateView):
     model = Countdown
     success_url = "/"
     fields = []
-
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.base_slug = uuid.uuid4()
@@ -48,9 +48,10 @@ class CountdownCreateView(CreateView):
 
 class CountdownView(TemplateView):
     template_name = 'countdown_view.html'
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if Countdown.objects.filter(base_slug=self.kwargs['pk']):
-            context['countdown'] = Countdown.objects.get(base_slug=self.kwargs['pk'])
+            countdown = Countdown.objects.get(base_slug=self.kwargs['pk'])
+            context['countdown'] = countdown
+            context['background'] = random.choice(countdown.list_pictures())
         return context

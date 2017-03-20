@@ -4,6 +4,9 @@ class Countdown(models.Model):
     base_slug = models.CharField(max_length=50)
     management_slug = models.CharField(max_length=50)
 
+    def list_pictures(self):
+        return [image for image in self.image_set.all()]
+
 class Image(models.Model):
     countdown = models.ForeignKey(Countdown)
     picture = models.FileField()

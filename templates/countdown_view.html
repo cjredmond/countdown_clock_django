@@ -1,5 +1,13 @@
 {% extends 'base.html' %}
+
+{% block topscript %}
+<script type="text/javascript">
+  document.body.background = "{{ MEDIA_URL }} {{ background.picture }}";
+</script>
+{% endblock %}
+
 {% block content %}
+
 {{ countdown.base_slug }}<br>
 {{ countdown.management_slug }}
 
