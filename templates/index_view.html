@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block topscript %}
+<!-- <script type="text/javascript">
+  var totalCount = 5
+  function ChangeIt(){
+    var num = Math.ceiling(Math.random() * totalCount );
+    document.body.background = 'media/' +num+ '.jpg';
+    document.body.style.backgroundSize = "cover";
+  }
+  console.log(totalCount)
+
+</script> -->
+<script type="text/javascript">
+  document.body.background = "{{ MEDIA_URL }} media/{{ num }}.jpg";
+</script>
+{% endblock %}
+
+{% block content %}
+ {{ num }}
+ <!-- <img src="{{ MEDIA_URL }}media/{{ num }}.jpg" alt=""> -->
+{% endblock %}
