@@ -54,4 +54,5 @@ class CountdownView(TemplateView):
             countdown = Countdown.objects.get(base_slug=self.kwargs['pk'])
             context['countdown'] = countdown
             context['background'] = random.choice(countdown.list_pictures())
+            context['end'] = countdown.end_time.strftime("%B %d %Y %H:%M %Z")
         return context
