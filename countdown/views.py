@@ -5,6 +5,7 @@ from countdown.models import Image, Countdown
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse, reverse_lazy
+from countdown.forms import testForm
 import random
 import uuid
 
@@ -39,7 +40,7 @@ class PassThroughView(View):
 class CountdownCreateView(CreateView):
     model = Countdown
     success_url = "/"
-    fields = ('end_time',)
+    form_class = testForm
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.base_slug = uuid.uuid4()
