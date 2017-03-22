@@ -35,8 +35,9 @@ class PassThroughView(View):
             target = Countdown.objects.get(management_slug=code)
         except ObjectDoesNotExist:
             return HttpResponseRedirect(reverse('index_view'))
-        # return HttpResponseRedirect(reverse('image_create_view', args=target.management_slug))
-        return HttpResponseRedirect('http://localhost:8000/manage/{}/'.format(code))
+        print(target.management_slug)
+        return HttpResponseRedirect(reverse('image_create_view', kwargs={'pk': 'target.management_slug'}))
+        #return HttpResponseRedirect('http://localhost:8000/manage/{}/'.format(code))
 
 class CountdownCreateView(CreateView):
     model = Countdown
