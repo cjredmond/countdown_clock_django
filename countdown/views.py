@@ -19,10 +19,10 @@ class IndexView(TemplateView):
 
 class ImageCreateView(CreateView):
     model = Image
-    success_url = "/"
     fields = ('picture',)
+    def get_success_url(self, **kwargs):
+        return reverse('image_create_view', kwargs={'pk': self.kwargs['pk']})
     def form_valid(self, form):
-        print(self.kwargs['pk'])
         subject = Countdown.objects.get(management_slug=str(self.kwargs['pk']))
         instance = form.save(commit=False)
         instance.countdown = subject
@@ -35,9 +35,7 @@ class PassThroughView(View):
             target = Countdown.objects.get(management_slug=code)
         except ObjectDoesNotExist:
             return HttpResponseRedirect(reverse('index_view'))
-        print(target.management_slug)
-        return HttpResponseRedirect(reverse('image_create_view', kwargs={'pk': 'target.management_slug'}))
-        #return HttpResponseRedirect('http://localhost:8000/manage/{}/'.format(code))
+        return HttpResponseRedirect(reverse('image_create_view', kwargs={'pk': target.management_slug}))
 
 class CountdownCreateView(CreateView):
     model = Countdown
