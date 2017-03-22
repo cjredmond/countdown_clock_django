@@ -12,9 +12,9 @@ import uuid
 
 class IndexView(TemplateView):
     template_name = 'index_view.html'
+    form_class = testForm
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['num'] = random.randint(4,6)
         return context
 
 class ImageCreateView(CreateView):
@@ -36,7 +36,7 @@ class PassThroughView(View):
         except ObjectDoesNotExist:
             return HttpResponseRedirect(reverse('index_view'))
         # return HttpResponseRedirect(reverse('image_create_view', args=target.management_slug))
-        return HttpResponseRedirect('http://localhost:8000/add_image/{}/'.format(code))
+        return HttpResponseRedirect('http://localhost:8000/manage/{}/'.format(code))
 
 class CountdownCreateView(CreateView):
     model = Countdown
@@ -47,10 +47,10 @@ class CountdownCreateView(CreateView):
         instance.base_slug = uuid.uuid4()
         instance.management_slug = uuid.uuid4()
         send_mail(
-        'test',
-        'test again',
+        'URLS',
+        'base url: {}\nmanagement url: {}'.format(instance.base_slug, instance.management_slug),
         'connorthrowaway1@gmail.com',
-        ['connor.redmond@gmail.com'],
+        ['{}'.format(instance.email)],
         fail_silently=False
         )
         return super().form_valid(form)
@@ -62,6 +62,7 @@ class CountdownView(TemplateView):
         if Countdown.objects.filter(base_slug=self.kwargs['pk']):
             countdown = Countdown.objects.get(base_slug=self.kwargs['pk'])
             context['countdown'] = countdown
-            context['background'] = random.choice(countdown.list_pictures())
+            if countdown.list_pictures():
+                context['background'] = random.choice(countdown.list_pictures())
             context['end'] = countdown.end_time.strftime("%B %d %Y %H:%M %Z")
         return context

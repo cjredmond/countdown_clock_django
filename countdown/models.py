@@ -4,9 +4,13 @@ class Countdown(models.Model):
     base_slug = models.CharField(max_length=50)
     management_slug = models.CharField(max_length=50)
     end_time = models.DateTimeField()
+    email = models.CharField(max_length=100)
 
     def list_pictures(self):
         return [image for image in self.image_set.all()]
+
+    def __str__(self):
+        return self.email
 
 class Image(models.Model):
     countdown = models.ForeignKey(Countdown)

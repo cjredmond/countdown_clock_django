@@ -6,11 +6,11 @@ from django.core.mail import send_mail
 class testForm(forms.ModelForm):
     class Meta:
         model = Countdown
-        fields = ['end_time']
+        fields = ['end_time', 'email']
         widgets = {
-        'end_time': DateTimeWidget(attrs={'id': 'yourdatetimeid'}, usel10n = True, bootstrap_version=3)
+        'end_time': DateTimeWidget(attrs={'id': 'yourdatetimeid'}, usel10n = True, bootstrap_version=3),
         }
-# 
+#
 # class ContactForm(forms.Form):
 #     sender = forms.CharField()
 #     message = forms.CharField(widget=forms.Textarea)

@@ -3,12 +3,15 @@ body {
   background-size: 100%;
 }
 
+label {
+
+}
 .placeholder {
   height: 40vh;
 }
 
 h1 {
-  color: yellow;
+  color: black;
 }
 
 #clockdiv{

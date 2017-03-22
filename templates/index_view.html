@@ -2,21 +2,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
     <meta charset="utf-8">
     <title></title>
   </head>
   <body>
-    <script type="text/javascript">
-      document.body.background = "{{ MEDIA_URL }} media/{{ num }}.jpg";
-    </script>
+    <div class="container">
+      <h1>BeginCount</h1>
 
-     {{ num }}
-     <form class="" action="/pass/" method="post">
-       {% csrf_token %}
-       <input type="text" name="code" value="">
-       <input type="submit" name="" value="submit">
-     </form>
+      <form class="" action="/pass/" method="post">
+        {% csrf_token %}
+        <label for="code">Go to management -></label>
+        <input type="text" name="code" value="">
+        <input type="submit" name="" value="submit">
+      </form>
+    </div>
+
+
 
 
   </body>
