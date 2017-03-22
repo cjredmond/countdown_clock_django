@@ -10,13 +10,6 @@ from django.core.mail import send_mail
 import random
 import uuid
 
-class IndexView(TemplateView):
-    template_name = 'index_view.html'
-    form_class = testForm
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        return context
-
 class ImageCreateView(CreateView):
     model = Image
     fields = ('picture',)
@@ -34,7 +27,7 @@ class PassThroughView(View):
         try:
             target = Countdown.objects.get(management_slug=code)
         except ObjectDoesNotExist:
-            return HttpResponseRedirect(reverse('index_view'))
+            return HttpResponseRedirect(reverse('countdown_create_view'))
         return HttpResponseRedirect(reverse('image_create_view', kwargs={'pk': target.management_slug}))
 
 class CountdownCreateView(CreateView):
