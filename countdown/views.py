@@ -1,11 +1,12 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, View
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
 from countdown.models import Image, Countdown
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse, reverse_lazy
 from countdown.forms import testForm
+from django.core.mail import send_mail
 import random
 import uuid
 
@@ -45,6 +46,13 @@ class CountdownCreateView(CreateView):
         instance = form.save(commit=False)
         instance.base_slug = uuid.uuid4()
         instance.management_slug = uuid.uuid4()
+        send_mail(
+        'test',
+        'test again',
+        'connorthrowaway1@gmail.com',
+        ['connor.redmond@gmail.com'],
+        fail_silently=False
+        )
         return super().form_valid(form)
 
 class CountdownView(TemplateView):

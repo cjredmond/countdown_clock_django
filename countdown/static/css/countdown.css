@@ -1,4 +1,12 @@
 
+body {
+  background-size: 100%;
+}
+
+.placeholder {
+  height: 40vh;
+}
+
 h1 {
   color: yellow;
 }

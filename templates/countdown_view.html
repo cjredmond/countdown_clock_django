@@ -9,6 +9,9 @@
     <title></title>
   </head>
   <body>
+<div class="row placeholder"></div>
+<div class="row">
+  <div class="col-md-4"></div>
     <div id=clockdiv>
       <div>
         <span class="days"></span>
@@ -27,6 +30,10 @@
         <div class="smalltext">Seconds</div>
       </div>
     </div>
+</div>
+
+
+
   </body>
   <script type="text/javascript">
     document.body.background = "{{ MEDIA_URL }} {{ background.image_url }}";
@@ -68,9 +75,3 @@
     initializeClock('clockdiv', deadline);
   </script>
 </html>
-
-
-
-{{ countdown.base_slug }}<br>
-{{ countdown.management_slug }}<br>
-{{ countdown.end_time }}
