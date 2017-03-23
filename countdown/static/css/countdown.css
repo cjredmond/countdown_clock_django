@@ -14,25 +14,34 @@ h1 {
   color: black;
 }
 
+.title {
+  font-size: 60px;
+  text-align: center;
+  text-shadow: 2px 0 0 white, -2px 0 0 white, 0 2px 0 white, 0 -2px 0 white, 1px 1px white, -1px -1px 0 white, 1px -1px 0  white, -1px 1px 0 white;
+}
+
 #clockdiv{
   font-family: sans-serif;
   color: #fff;
   display: inline-block;
   text-align: center;
   font-size: 30px;
+  background: grey;
+  border-radius: 5px;
+  border: 3px solid black;
 }
 
 #clockdiv > div {
   padding: 10px;
   border-radius: 3px;
-  background: #00BF96;
+  /*background: red;*/
   display: inline-block;
 }
 
 #clockdiv div > span{
   padding: 15px;
   border-radius: 3px;
-  background: #00816A;
+  background: black;
   display: inline-block;
 }
 
