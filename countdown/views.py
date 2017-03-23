@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView, DetailView, View
-from django.views.generic.edit import CreateView, FormView
+from django.views.generic.edit import CreateView, FormView, DeleteView
 from countdown.models import Image, Countdown
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
@@ -13,6 +13,11 @@ import uuid
 class ImageCreateView(CreateView):
     model = Image
     fields = ('picture',)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['current_images'] = Countdown.objects.get(management_slug=self.kwargs['pk']).list_pictures()
+        return context
+
     def get_success_url(self, **kwargs):
         return reverse('image_create_view', kwargs={'pk': self.kwargs['pk']})
     def form_valid(self, form):
@@ -20,6 +25,10 @@ class ImageCreateView(CreateView):
         instance = form.save(commit=False)
         instance.countdown = subject
         return super().form_valid(form)
+
+class ImageDeleteView(DeleteView):
+    model = Image
+    success_url = "/"
 
 class PassThroughView(View):
     def post(self, request):

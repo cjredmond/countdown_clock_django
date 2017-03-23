@@ -16,6 +16,9 @@ class Image(models.Model):
     countdown = models.ForeignKey(Countdown)
     picture = models.FileField()
 
+    def __str__(self):
+        return self.image_url
+
     @property
     def image_url(self):
         if self.picture:
