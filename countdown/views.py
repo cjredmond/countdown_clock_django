@@ -42,6 +42,7 @@ class CountdownCreateView(CreateView):
         'URLS',
         'base url: begincount.com/countdown/{}\nmanagement url: {}'.format(instance.base_slug, instance.management_slug),
         'connorthrowaway1@gmail.com',
+        'start@begincount.com',
         ['{}'.format(instance.email)],
         fail_silently=False
         )
