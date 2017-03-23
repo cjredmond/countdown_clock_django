@@ -1,33 +1,37 @@
-{% extends 'base.html' %}
-{% block content %}
-{% if request.user.is_authenticated %}
-<div class="container">
-  <div class="row" style="height: 30px"></div>
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/manage.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row" style="height: 30px"></div>
 
-  <div class="row">
-    <div class="col-md-4">
-      <form class=""  method="post" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="submit" class="btn btn-primary">
-      </form>
+      <div class="row">
+        <div class="col-md-4">
+          <form class=""  method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="submit" class="btn btn-primary">
+          </form>
+        </div>
+        <div class="col-md-6">
+          {% for image in current_images %}
+          <form class="" action="{% url 'image_delete_view' image.id %}" method="get">
+            {% csrf_token %}
+            <img class='img-small' src="{{ MEDIA_URL }}{{ image.image_url }}" alt="">
+
+            <input type="submit" name="" value="Delete">
+          </form><br>
+          {% endfor %}
+        </div>
+      </div>
+
     </div>
-    <div class="col-md-8">
-      {% for image in current_images %}
 
-      <form class="" action="{% url 'image_delete_view' image.id %}" method="get">
-        {% csrf_token %}
-        {{ image }}
-        <input type="submit" name="" value="Delete">
-      </form>
-      {% endfor %}
-    </div>
-  </div>
-
-</div>
-
-
-
-{% endif %}
-
-{% endblock %}
+  </body>
+</html>
