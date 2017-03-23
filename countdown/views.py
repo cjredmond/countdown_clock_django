@@ -41,7 +41,7 @@ class CountdownCreateView(CreateView):
         send_mail(
         'URLS',
         'base url: {}\nmanagement url: {}'.format(instance.base_slug, instance.management_slug),
-        'connorthrowaway1@gmail.com',
+        'start@begincount.com',
         ['{}'.format(instance.email)],
         fail_silently=False
         )
