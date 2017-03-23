@@ -40,7 +40,7 @@ class CountdownCreateView(CreateView):
         instance.management_slug = uuid.uuid4()
         send_mail(
         'URLS',
-        'base url: {}\nmanagement url: {}'.format(instance.base_slug, instance.management_slug),
+        'base url: begincount.com/countdown/{}\nmanagement url: {}'.format(instance.base_slug, instance.management_slug),
         'connorthrowaway1@gmail.com',
         ['{}'.format(instance.email)],
         fail_silently=False
