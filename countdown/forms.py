@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 class testForm(forms.ModelForm):
     class Meta:
         model = Countdown
-        fields = ['end_time', 'email']
+        fields = ['end_time', 'email', 'title']
         widgets = {
         'end_time': DateTimeWidget(attrs={'id': 'yourdatetimeid'}, usel10n = True, bootstrap_version=3),
         }

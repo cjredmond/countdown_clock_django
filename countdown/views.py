@@ -79,8 +79,3 @@ class ManageView(TemplateView):
             context['countdown'] = countdown
             context['images'] = countdown.list_pictures()
             return context
-
-class UpdateTitleView(UpdateView):
-    model = Countdown
-    success_url = "/"
-    fields = ('title',)
