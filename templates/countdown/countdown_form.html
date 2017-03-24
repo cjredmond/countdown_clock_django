@@ -14,9 +14,9 @@
     <div class="container">
 
       <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-4">
-          <h3>New Countdown</h3>
+        <div class="col-md-4"></div>
+        <div class="col-md-4 new-countdown">
+          <h3 style="text-align: center;">New Countdown</h3>
           <form class="" method="post">
             <table>
               {{ form.as_table }}
@@ -29,14 +29,17 @@
       <div class="row">
         <div class="col-md-3"></div>
         <div class="col-md-4">
-          <form class="" action="/pass/" method="post">
+          <!-- <form class="" action="/pass/" method="post">
             {% csrf_token %}
             <label for="code">Go to management -></label>
             <input type="text" name="code" value="" class="manage-code">
             <input type="submit" name="" value="submit" class="btn btn-primary">
-          </form>
+          </form> -->
         </div>
       </div>
     </div>
   </body>
+  <script type="text/javascript">
+    document.body.background = "{{ MEDIA_URL }}media/home_page/1.jpg"
+  </script>
 </html>

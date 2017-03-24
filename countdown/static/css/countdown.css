@@ -2,7 +2,7 @@
 body {
   background-size: cover;
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: top;
 }
 
 
@@ -64,9 +64,10 @@ h1 {
   border: 1px solid #ccc;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
+
 }
 
-.manage-code {
+/*.manage-code {
   height: 34px;
   padding: 6px 12px;
   font-size: 14px;
@@ -76,7 +77,4 @@ h1 {
   background-image: none;
   border: 1px solid #ccc;
   border-radius: 4px;
-}
-
-.new-count-button {
-}
+}*/

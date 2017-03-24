@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/manage.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" media="screen" title="no title">
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <h2 style="text-align: center;">Mangement</h2>
+      <div class="row">
+        <div class="col-md-6">
+
+          <div class="panel panel-default centered">
+            <div class="panel panel-heading">
+              Images
+            </div>
+            <div class="panel-body">
+              <a href="{% url 'image_create_view' countdown.management_slug %}"><h2>Add Image</h2></a>
+            </div>
+          </div>
+
+          {% if not images %}
+          <p>No images yet!</p>
+          {% endif %}
+          {% for image in images %}
+          <form class="" action="{% url 'image_delete_view' image.id %}" method="get">
+            {% csrf_token %}
+            <div class="img-wrap">
+              <img class='img-small' src="{{ MEDIA_URL }}{{ image.image_url }}" alt="">
+              <input class="btn btn-danger del" type="submit" name="" value="X">
+            </div>
+          </form>
+          {% endfor %}
+        </div>
+        <div class="col-md-6">
+          <div class="panel panel-default centered">
+            <div class="panel panel-heading">
+              Profile
+            </div>
+            <div class="panel-body">
+              <a href="{% url 'image_create_view' countdown.management_slug %}"><h2>Add title</h2></a>
+            
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

@@ -5,7 +5,7 @@ from countdown.models import Image, Countdown
 from django.http import HttpResponseRedirect
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.urlresolvers import reverse, reverse_lazy
-from countdown.forms import testForm
+from countdown.forms import testForm, testImageForm
 from django.core.mail import send_mail
 import random
 import uuid
@@ -69,3 +69,18 @@ class CountdownView(TemplateView):
                 context['background'] = random.choice(countdown.list_pictures())
             context['end'] = countdown.end_time.strftime("%B %d %Y %H:%M %Z")
         return context
+
+class ManageView(TemplateView):
+    template_name = 'manage_view.html'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if Countdown.objects.filter(management_slug=self.kwargs['pk']):
+            countdown = Countdown.objects.get(management_slug=self.kwargs['pk'])
+            context['countdown'] = countdown
+            context['images'] = countdown.list_pictures()
+            return context
+
+class UpdateTitleView(UpdateView):
+    model = Countdown
+    success_url = "/"
+    fields = ('title',)

@@ -24,19 +24,7 @@
             <input type="submit" value="submit" class="btn btn-primary">
           </form>
         </div>
-        <div class="col-md-6">
-          {% if not current_images %}
-          <p>No images yet!</p>
-          {% endif %}
-          {% for image in current_images %}
-          <form class="" action="{% url 'image_delete_view' image.id %}" method="get">
-            {% csrf_token %}
-            <img class='img-small' src="{{ MEDIA_URL }}{{ image.image_url }}" alt="">
-
-            <input type="submit" name="" value="Delete">
-          </form><br>
-          {% endfor %}
-        </div>
+        
       </div>
 
     </div>

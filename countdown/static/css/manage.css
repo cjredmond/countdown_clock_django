@@ -1,4 +1,25 @@
 .img-small {
-  height: 60px !important;
-  width: 80px !important;
+  width: 180px !important;
+  height: 140px;
+}
+
+.centered {
+  text-align: center;
+}
+
+.img-wrap {
+  display: inline-block;
+  float: left;
+  width: 180px;
+  height: 140px;
+  position: relative;
+}
+
+.del {
+  display: inline-block;
+  float: right;
+  margin: 0 0 0 0 ;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
