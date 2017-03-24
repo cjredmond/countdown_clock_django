@@ -10,6 +10,11 @@
   <body>
     <div class="container">
       <div class="row" style="height: 30px"></div>
+      <div class="row">
+        <div class="col-md-6">
+          countdown URL: <a href="{% url 'countdown_view' countdown.base_slug %}">begincount.com/{{ countdown.base_slug }}</a>
+        </div>
+      </div>
 
       <div class="row">
         <div class="col-md-4">
@@ -20,6 +25,9 @@
           </form>
         </div>
         <div class="col-md-6">
+          {% if not current_images %}
+          <p>No images yet!</p>
+          {% endif %}
           {% for image in current_images %}
           <form class="" action="{% url 'image_delete_view' image.id %}" method="get">
             {% csrf_token %}

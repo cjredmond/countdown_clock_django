@@ -4,7 +4,7 @@ class Countdown(models.Model):
     base_slug = models.CharField(max_length=50)
     management_slug = models.CharField(max_length=50)
     end_time = models.DateTimeField()
-    email = models.CharField(max_length=100)
+    email = models.CharField(null=True,blank=True,max_length=100)
     title = models.CharField(null=True,blank=True,max_length=25)
 
     def list_pictures(self):

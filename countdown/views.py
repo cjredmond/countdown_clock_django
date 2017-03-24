@@ -41,15 +41,17 @@ class PassThroughView(View):
 
 class CountdownCreateView(CreateView):
     model = Countdown
-    success_url = "/"
     form_class = testForm
+    def get_success_url(self):
+        target = Countdown.objects.last()
+        return reverse('image_create_view', kwargs={'pk': target.management_slug })
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.base_slug = uuid.uuid4()
         instance.management_slug = uuid.uuid4()
         send_mail(
         'URLS',
-        'base url: begincount.com/countdown/{}\nmanagement url: {}'.format(instance.base_slug, instance.management_slug),
+        'base url: begincount.com/countdown/{}\nmanagement url: begincount.com/manage/{}'.format(instance.base_slug, instance.management_slug),
         'connorthrowaway1@gmail.com',
         'start@begincount.com',
         ['{}'.format(instance.email)],
