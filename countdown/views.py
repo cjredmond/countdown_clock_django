@@ -46,7 +46,7 @@ class CountdownCreateView(CreateView):
     form_class = testForm
     def get_success_url(self):
         target = Countdown.objects.last()
-        return reverse('image_create_view', kwargs={'pk': target.management_slug })
+        return reverse('manage_view', kwargs={'pk': target.management_slug })
     def form_valid(self, form):
         instance = form.save(commit=False)
         instance.base_slug = uuid.uuid4()

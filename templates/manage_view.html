@@ -30,7 +30,7 @@
           <p>No images yet!</p>
           {% endif %}
           {% for image in images %}
-          <form class="" action="{% url 'image_delete_view' image.id %}" method="get">
+          <form class="" action="{% url 'image_delete_view' countdown.management_slug image.id %}" method="get">
             {% csrf_token %}
             <div class="img-wrap">
               <img class='img-small' src="{{ MEDIA_URL }}{{ image.image_url }}" alt="">
