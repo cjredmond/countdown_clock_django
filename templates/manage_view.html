@@ -42,10 +42,14 @@
         <div class="col-md-6">
           <div class="panel panel-default centered">
             <div class="panel panel-heading">
-              Profile
+              <h3><a href="{% url 'countdown_view' countdown.base_slug %}">Countdown</a></h3>
             </div>
             <div class="panel-body">
-
+              <form class="" action="{% url 'title_view' countdown.management_slug countdown.id %}" method="post">
+                {% csrf_token %}
+                  {{ title }}
+                  <input class="btn btn-primary" type="submit" name="" value="New Title">
+              </form>
 
             </div>
           </div>

@@ -15,3 +15,8 @@ class testImageForm(forms.ModelForm):
     class Meta:
         model = Image
         fields = ['picture']
+
+class testTitleForm(forms.ModelForm):
+    class Meta:
+        model = Countdown
+        fields = ['title']

@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from countdown.views import ImageCreateView, CountdownCreateView,\
                             CountdownView, PassThroughView, ImageDeleteView, \
-                            ManageView
+                            ManageView, TitleView
 
 
 urlpatterns = [
@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^$', CountdownCreateView.as_view(), name='countdown_create_view'),
     url(r'^countdown/(?P<pk>.+)/$', CountdownView.as_view(), name='countdown_view'),
     url(r'^test/(?P<pk>.+)/$', ManageView.as_view(), name='manage_view'),
+    url(r'^test/(?P<sk>.+)/title/(?P<pk>\d+)$', TitleView.as_view(), name='title_view'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
