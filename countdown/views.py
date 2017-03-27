@@ -74,10 +74,6 @@ class CountdownView(TemplateView):
 
 class ManageView(TemplateView):
     template_name = 'manage_view.html'
-    form_class = testImageForm
-    def get_post(self):
-        if self.POST:
-            print(self.POST)
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if Countdown.objects.filter(management_slug=self.kwargs['pk']):
