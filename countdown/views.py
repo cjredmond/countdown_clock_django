@@ -19,7 +19,7 @@ class ImageCreateView(CreateView):
         context['countdown'] = Countdown.objects.get(management_slug=self.kwargs['pk'])
         return context
     def get_success_url(self, **kwargs):
-        return reverse('image_create_view', kwargs={'pk': self.kwargs['pk']})
+        return reverse('manage_view', kwargs={'pk': self.kwargs['pk']})
     def form_valid(self, form):
         subject = Countdown.objects.get(management_slug=str(self.kwargs['pk']))
         instance = form.save(commit=False)
@@ -28,7 +28,9 @@ class ImageCreateView(CreateView):
 
 class ImageDeleteView(DeleteView):
     model = Image
-    success_url = "/"
+    def get_success_url(self, **kwargs):
+        img = Image.objects.get(id=self.kwargs['pk'])
+        return reverse('manage_view', kwargs={'pk': img.countdown.management_slug })
 
 class PassThroughView(View):
     def post(self, request):
@@ -72,10 +74,12 @@ class CountdownView(TemplateView):
 
 class ManageView(TemplateView):
     template_name = 'manage_view.html'
+    form_class = testImageForm
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         if Countdown.objects.filter(management_slug=self.kwargs['pk']):
             countdown = Countdown.objects.get(management_slug=self.kwargs['pk'])
             context['countdown'] = countdown
+            context['form'] = testImageForm
             context['images'] = countdown.list_pictures()
             return context
